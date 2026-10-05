@@ -1,0 +1,115 @@
+@import "tailwindcss";
+
+:root {
+  --bg-pop: #fbf7ee;
+  --text-pop: #0f172a;
+  --yellow-pop: #ffd500;
+  --cyan-pop: #00e5ff;
+  --red-pop: #ff2a5f;
+  --purple-pop: #7928ca;
+  --dark-subgrid: #0f111a;
+}
+
+body {
+  background-color: var(--bg-pop);
+  color: var(--text-pop);
+  font-family: 'Courier New', Courier, monospace, system-ui, sans-serif;
+  overflow-x: hidden;
+}
+
+/* Halftone Dot Pattern Background */
+.bg-halftone {
+  background-image: radial-gradient(#000000 1.2px, transparent 1.2px);
+  background-size: 12px 12px;
+  background-position: 0 0;
+  opacity: 0.12;
+}
+
+.bg-halftone-cyan {
+  background-image: radial-gradient(#00e5ff 1.5px, transparent 1.5px);
+  background-size: 10px 10px;
+  opacity: 0.25;
+}
+
+.bg-halftone-red {
+  background-image: radial-gradient(#ff2a5f 1.5px, transparent 1.5px);
+  background-size: 10px 10px;
+  opacity: 0.25;
+}
+
+/* Comic Pop Art Panel Box Styling */
+.comic-box {
+  border: 3px solid #000000;
+  box-shadow: 5px 5px 0px #000000;
+  transition: all 0.15s ease-in-out;
+}
+
+.comic-box:hover {
+  box-shadow: 7px 7px 0px #000000;
+  transform: translate(-2px, -2px);
+}
+
+.comic-box-cyan {
+  border: 3px solid #000000;
+  box-shadow: 5px 5px 0px #00e5ff;
+}
+
+.comic-box-red {
+  border: 3px solid #000000;
+  box-shadow: 5px 5px 0px #ff2a5f;
+}
+
+.comic-box-yellow {
+  border: 3px solid #000000;
+  box-shadow: 5px 5px 0px #ffd500;
+}
+
+/* Comic Speech Bubble Marker */
+.speech-bubble-bottom {
+  position: relative;
+}
+
+.speech-bubble-bottom::after {
+  content: '';
+  position: absolute;
+  bottom: -14px;
+  left: 24px;
+  border-width: 14px 12px 0;
+  border-style: solid;
+  border-color: #000000 transparent;
+  display: block;
+  width: 0;
+}
+
+/* Vacuum Tube Cathode Neon Glow */
+.glow-tube-cyan {
+  text-shadow: 0 0 8px rgba(0, 229, 255, 0.8), 0 0 20px rgba(0, 229, 255, 0.4);
+}
+
+.glow-tube-red {
+  text-shadow: 0 0 8px rgba(255, 42, 95, 0.8), 0 0 20px rgba(255, 42, 95, 0.4);
+}
+
+.glow-tube-yellow {
+  text-shadow: 0 0 8px rgba(255, 213, 0, 0.8), 0 0 20px rgba(255, 213, 0, 0.4);
+}
+
+/* Custom Scrollbar for Retro Vibe */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1ebd9;
+  border-left: 2px solid #000000;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #ffd500;
+  border: 2px solid #000000;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #ff2a5f;
+}
