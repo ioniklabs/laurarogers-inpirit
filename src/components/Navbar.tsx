@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import Link from "next/link";
-import { Radio, MapPin, BookOpen, Layers, Key, Zap, Bell, X } from "lucide-react";
+import { Radio, MapPin, BookOpen, Layers, Key, Shield, X, Lock } from "lucide-react";
 
 export function Navbar() {
   const [showVIPModal, setShowVIPModal] = useState(false);
@@ -19,70 +19,70 @@ export function Navbar() {
   return (
     <>
       {/* Top Ticker Notification Banner */}
-      <div className="bg-black text-amber-400 text-xs py-1 px-4 font-mono border-b-2 border-black flex items-center justify-between overflow-x-hidden">
-        <div className="flex items-center gap-2 animate-pulse">
-          <span className="bg-red-600 text-white text-[10px] px-1.5 py-0.5 font-bold uppercase rounded-none">
-            LIVE BROADCAST
+      <div className="bg-black text-neutral-300 text-xs py-1 px-4 font-mono border-b border-neutral-700 flex items-center justify-between overflow-x-hidden">
+        <div className="flex items-center gap-2">
+          <span className="bg-neutral-800 text-white text-[10px] px-1.5 py-0.5 font-bold uppercase border border-neutral-600">
+            RESTRICTED FEED
           </span>
-          <span>NEW SERIAL CHAPTER RELEASED EVERY FRIDAY • CHAPTER 1 & 2 NOW FREE TO READ</span>
+          <span>CLASSIFIED DISPATCH • NEW CHAPTER EVERY FRIDAY • FILES 01 & 02 UNCLASSIFIED</span>
         </div>
-        <div className="hidden sm:flex items-center gap-4 text-slate-300">
-          <span>FREQ: 104.2 MHZ</span>
-          <span className="text-cyan-400 font-bold">GRID TIER: 0 & 1 ACTIVE</span>
+        <div className="hidden sm:flex items-center gap-4 text-neutral-400">
+          <span>SURVEILLANCE FREQ: 104.2 MHZ</span>
+          <span className="text-white font-bold">GRID CLEARANCE LEVEL: 0 & 1</span>
         </div>
       </div>
 
-      {/* Main Comic Pop Header */}
-      <header className="sticky top-0 z-50 bg-[#ffd500] border-b-4 border-black shadow-[0_4px_0_#000]">
+      {/* Main Classified Government Header */}
+      <header className="sticky top-0 z-50 bg-[#121212] text-white border-b-2 border-black shadow-[0_4px_0_#000]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3 flex items-center justify-between">
 
           {/* Logo Brand */}
           <Link href="/" className="flex items-center gap-3 group">
-            <div className="bg-black text-cyan-400 p-2 font-black text-2xl border-2 border-black shadow-[2px_2px_0_#00e5ff] group-hover:scale-105 transition-transform">
+            <div className="bg-neutral-900 text-white p-2 font-black text-xl sm:text-2xl border-2 border-neutral-600 shadow-[2px_2px_0_#000] group-hover:bg-black transition-all">
               1964
             </div>
             <div>
-              <span className="block text-xl sm:text-2xl font-black text-black tracking-tight leading-none uppercase italic">
+              <span className="block text-lg sm:text-xl font-black text-white tracking-widest leading-none uppercase font-mono">
                 CHRONO-CLASS
               </span>
-              <span className="text-xs font-mono text-black font-bold uppercase tracking-wider bg-white px-1 border border-black">
-                DYSTOPIAN SERIAL
+              <span className="text-[10px] font-mono text-neutral-400 font-bold uppercase tracking-wider bg-neutral-900 px-1 border border-neutral-700">
+                CLASSIFIED DOSSIER ARCHIVE
               </span>
             </div>
           </Link>
 
           {/* Nav Links */}
-          <nav className="hidden md:flex items-center gap-1 sm:gap-2 font-black text-sm">
+          <nav className="hidden md:flex items-center gap-1 sm:gap-2 font-mono text-xs font-bold">
             <Link
               href="/chapters"
-              className="flex items-center gap-1.5 px-3 py-1.5 bg-white text-black border-2 border-black shadow-[2px_2px_0_#000] hover:bg-cyan-300 hover:translate-y-[-2px] transition-all"
+              className="flex items-center gap-1.5 px-3 py-1.5 bg-neutral-900 text-white border border-neutral-600 shadow-[2px_2px_0_#000] hover:bg-neutral-800 transition-all"
             >
-              <BookOpen className="w-4 h-4" />
-              <span>CHAPTERS</span>
+              <BookOpen className="w-3.5 h-3.5" />
+              <span>FILES</span>
             </Link>
 
             <Link
               href="/map"
-              className="flex items-center gap-1.5 px-3 py-1.5 bg-white text-black border-2 border-black shadow-[2px_2px_0_#000] hover:bg-cyan-300 hover:translate-y-[-2px] transition-all"
+              className="flex items-center gap-1.5 px-3 py-1.5 bg-neutral-900 text-white border border-neutral-600 shadow-[2px_2px_0_#000] hover:bg-neutral-800 transition-all"
             >
-              <MapPin className="w-4 h-4" />
-              <span>WORLD MAP</span>
+              <MapPin className="w-3.5 h-3.5" />
+              <span>RADAR MAP</span>
             </Link>
 
             <Link
               href="/comic"
-              className="flex items-center gap-1.5 px-3 py-1.5 bg-white text-black border-2 border-black shadow-[2px_2px_0_#000] hover:bg-cyan-300 hover:translate-y-[-2px] transition-all"
+              className="flex items-center gap-1.5 px-3 py-1.5 bg-neutral-900 text-white border border-neutral-600 shadow-[2px_2px_0_#000] hover:bg-neutral-800 transition-all"
             >
-              <Layers className="w-4 h-4" />
-              <span>WEB COMIC</span>
+              <Layers className="w-3.5 h-3.5" />
+              <span>SURVEILLANCE COMIC</span>
             </Link>
 
             <Link
               href="/codex"
-              className="flex items-center gap-1.5 px-3 py-1.5 bg-white text-black border-2 border-black shadow-[2px_2px_0_#000] hover:bg-cyan-300 hover:translate-y-[-2px] transition-all"
+              className="flex items-center gap-1.5 px-3 py-1.5 bg-neutral-900 text-white border border-neutral-600 shadow-[2px_2px_0_#000] hover:bg-neutral-800 transition-all"
             >
-              <Key className="w-4 h-4" />
-              <span>CODEX & CIPHER</span>
+              <Key className="w-3.5 h-3.5" />
+              <span>CIPHER DECODER</span>
             </Link>
           </nav>
 
@@ -90,78 +90,70 @@ export function Navbar() {
           <div className="flex items-center gap-2">
             <button
               onClick={() => setShowVIPModal(true)}
-              className="flex items-center gap-1.5 px-3 py-1.5 bg-[#ff2a5f] text-white font-black text-xs sm:text-sm border-2 border-black shadow-[3px_3px_0_#000] hover:bg-red-600 hover:scale-105 transition-all cursor-pointer"
+              className="flex items-center gap-1.5 px-3 py-1.5 bg-white text-black font-mono font-black text-xs border-2 border-black shadow-[2px_2px_0_#000] hover:bg-neutral-200 transition-all cursor-pointer"
             >
-              <Radio className="w-4 h-4 animate-spin" />
-              <span>TRANSMISSION VIP</span>
+              <Shield className="w-3.5 h-3.5" />
+              <span>CLEARANCE REQUEST</span>
             </button>
           </div>
         </div>
 
         {/* Mobile Nav Bar Strip */}
-        <div className="md:hidden flex items-center justify-around bg-black text-white text-xs font-bold py-2 border-t border-black">
-          <Link href="/chapters" className="flex items-center gap-1 hover:text-amber-400">
-            <BookOpen className="w-3.5 h-3.5" /> Read
-          </Link>
-          <Link href="/map" className="flex items-center gap-1 hover:text-cyan-400">
-            <MapPin className="w-3.5 h-3.5" /> Map
-          </Link>
-          <Link href="/comic" className="flex items-center gap-1 hover:text-amber-400">
-            <Layers className="w-3.5 h-3.5" /> Comic
-          </Link>
-          <Link href="/codex" className="flex items-center gap-1 hover:text-red-400">
-            <Key className="w-3.5 h-3.5" /> Codex
-          </Link>
+        <div className="md:hidden flex items-center justify-around bg-black text-neutral-300 text-xs font-mono py-2 border-t border-neutral-800">
+          <Link href="/chapters" className="hover:text-white">Files</Link>
+          <Link href="/map" className="hover:text-white">Map</Link>
+          <Link href="/comic" className="hover:text-white">Comic</Link>
+          <Link href="/codex" className="hover:text-white">Decoder</Link>
         </div>
       </header>
 
-      {/* Transmission VIP Modal */}
+      {/* Clearance Modal */}
       {showVIPModal && (
-        <div className="fixed inset-0 z-50 bg-black/80 flex items-center justify-center p-4">
-          <div className="bg-[#fbf7ee] border-4 border-black p-6 max-w-md w-full shadow-[8px_8px_0_#ff2a5f] relative">
+        <div className="fixed inset-0 z-50 bg-black/85 flex items-center justify-center p-4">
+          <div className="bg-[#1a1a1a] text-white border-2 border-neutral-500 p-6 max-w-md w-full shadow-[8px_8px_0_#000] relative font-mono">
             <button
               onClick={() => setShowVIPModal(false)}
-              className="absolute top-3 right-3 p-1 bg-black text-white hover:bg-red-600 border border-black font-bold"
+              className="absolute top-3 right-3 p-1 bg-neutral-800 text-neutral-300 hover:text-white border border-neutral-600 font-bold"
             >
-              <X className="w-5 h-5" />
+              <X className="w-4 h-4" />
             </button>
 
-            <div className="flex items-center gap-2 mb-3 text-red-600 font-mono text-xs font-bold uppercase">
-              <Zap className="w-4 h-4" /> Sub-Grid Pirate Signal
+            <div className="flex items-center gap-2 mb-3 text-neutral-400 text-xs font-bold uppercase border-b border-neutral-700 pb-2">
+              <Lock className="w-4 h-4" /> GOVERNMENT CLEARANCE REQUEST
             </div>
 
-            <h3 className="text-2xl font-black text-black uppercase italic mb-2">
-              Join The Wiretapper Circuit
+            <h3 className="text-xl font-black uppercase italic mb-2 tracking-wide text-white">
+              AUTHORIZED INTERCEPT CIRCUIT
             </h3>
 
-            <p className="text-sm font-mono text-slate-800 mb-4 leading-relaxed">
-              Subscribe to receive weekly chapter alerts, exclusive cipher keys, and 24-hour early access to Chapter 4 before Stratum enforcers intercept the wire!
+            <p className="text-xs text-neutral-300 mb-4 leading-relaxed bg-black/60 p-3 border border-neutral-800">
+              Submit your intelligence receiver address to get weekly dispatch alerts, decrypted cipher keys, and 24-hour advance access to Restricted File Chapter 4.
             </p>
 
             {subscribed ? (
-              <div className="bg-emerald-200 border-2 border-black p-4 text-emerald-950 font-bold font-mono text-sm text-center">
-                ✓ SIGNAL ESTABLISHED! Check your inbox for the secret transmission key (CIPHER: SUBGRID-VIP).
+              <div className="bg-neutral-900 border border-neutral-500 p-4 text-neutral-200 font-bold text-xs text-center">
+                ✓ CLEARANCE VERIFIED. Check your transmission inbox for the secret key (CIPHER: SUBGRID-VIP).
               </div>
             ) : (
               <form onSubmit={handleSubscribe} className="space-y-3">
                 <div>
-                  <label className="block text-xs font-bold uppercase font-mono mb-1 text-black">
-                    Frequency Audio Receiver (Email):
+                  <label className="block text-[11px] font-bold uppercase mb-1 text-neutral-400">
+                    RECEIVER ADDRESS (EMAIL):
                   </label>
                   <input
                     type="email"
                     required
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
-                    placeholder="novawiretapper@subgrid.net"
-                    className="w-full px-3 py-2 bg-white border-2 border-black font-mono text-sm focus:outline-none focus:ring-2 focus:ring-cyan-400"
+                    placeholder="agent.novawiretapper@subgrid.gov"
+                    className="w-full px-3 py-2 bg-neutral-900 border border-neutral-600 text-white text-xs focus:outline-none focus:border-white"
                   />
                 </div>
                 <button
                   type="submit"
-                  className="w-full py-2.5 bg-[#00e5ff] text-black font-black uppercase text-sm border-2 border-black shadow-[3px_3px_0_#000] hover:bg-cyan-300 transition-all cursor-pointer"
+                  className="w-full py-2.5 bg-white text-black font-black uppercase text-xs border border-black shadow-[2px_2px_0_#000] hover:bg-neutral-200 transition-all cursor-pointer"
                 >
-                  Tune In & Unlock Bonus Lore
+                  REQUEST AUTHORIZATION KEY
                 </button>
               </form>
             )}

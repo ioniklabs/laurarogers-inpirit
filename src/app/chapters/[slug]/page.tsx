@@ -4,9 +4,9 @@ import React, { useState, use } from "react";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Navbar } from "@/components/Navbar";
-import { CHAPTERS, Chapter, NOVEL_META } from "@/data/novelData";
+import { CHAPTERS } from "@/data/novelData";
 import { generateChapterJsonLd } from "@/lib/jsonld";
-import { BookOpen, ChevronLeft, ChevronRight, Bookmark, Sun, Moon, Type, Radio, Lock } from "lucide-react";
+import { ChevronLeft, ChevronRight, Bookmark, Type, Shield, Lock } from "lucide-react";
 
 export default function ChapterReaderPage({ params }: { params: Promise<{ slug: string }> }) {
   const resolvedParams = use(params);
@@ -17,7 +17,7 @@ export default function ChapterReaderPage({ params }: { params: Promise<{ slug: 
   }
 
   const [fontSize, setFontSize] = useState<"sm" | "base" | "lg">("base");
-  const [theme, setTheme] = useState<"vintage" | "dark" | "newsprint">("vintage");
+  const [theme, setTheme] = useState<"monochrome" | "dark" | "dossier">("dossier");
   const [bookmarked, setBookmarked] = useState(false);
 
   const currentIndex = CHAPTERS.findIndex((c) => c.slug === chapter.slug);
@@ -28,14 +28,17 @@ export default function ChapterReaderPage({ params }: { params: Promise<{ slug: 
 
   return (
     <div
-      className={`min-h-screen flex flex-col font-sans transition-colors duration-200 ${
+      className={`min-h-screen flex flex-col font-mono transition-colors duration-200 ${
         theme === "dark"
-          ? "bg-slate-950 text-slate-100"
-          : theme === "newsprint"
-          ? "bg-[#e8e2ce] text-slate-900"
-          : "bg-[#fbf7ee] text-slate-900"
+          ? "bg-[#121212] text-neutral-100"
+          : theme === "monochrome"
+          ? "bg-white text-black"
+          : "bg-[#d8d6d0] text-neutral-900"
       }`}
     >
+      {/* Background Film Grain Overlay */}
+      <div className="fixed inset-0 bg-grain pointer-events-none opacity-25 z-50" />
+
       {/* Schema.org JSON-LD */}
       {jsonLd && (
         <script
@@ -47,67 +50,64 @@ export default function ChapterReaderPage({ params }: { params: Promise<{ slug: 
       <Navbar />
 
       {/* Reader Control Toolbar */}
-      <div className="sticky top-[68px] z-40 bg-black text-white border-b-4 border-black py-2 px-4 shadow-[0_4px_0_#000]">
+      <div className="sticky top-[60px] z-40 bg-[#121212] text-white border-b-2 border-black py-2 px-4 shadow-[0_4px_0_#000]">
         <div className="max-w-4xl mx-auto flex flex-wrap items-center justify-between gap-3 text-xs font-mono">
           <div className="flex items-center gap-2">
             <Link
               href="/chapters"
-              className="flex items-center gap-1 text-cyan-400 font-bold hover:underline"
+              className="flex items-center gap-1 text-neutral-300 font-bold hover:underline"
             >
-              <ChevronLeft className="w-4 h-4" /> CHAPTERS
+              <ChevronLeft className="w-4 h-4" /> DIRECTORY
             </Link>
-            <span className="text-slate-600">|</span>
-            <span className="font-bold text-amber-400">CH {chapter.number}</span>
+            <span className="text-neutral-600">|</span>
+            <span className="font-bold text-white">FILE 0{chapter.number}</span>
           </div>
 
-          {/* Reader Preferences Buttons */}
+          {/* Controls */}
           <div className="flex items-center gap-3">
-            {/* Font Size Adjust */}
-            <div className="flex items-center gap-1 bg-slate-800 p-1 border border-slate-700">
-              <Type className="w-3.5 h-3.5 text-slate-400 ml-1" />
+            <div className="flex items-center gap-1 bg-neutral-900 p-1 border border-neutral-700">
+              <Type className="w-3.5 h-3.5 text-neutral-400 ml-1" />
               <button
                 onClick={() => setFontSize("sm")}
-                className={`px-1.5 py-0.5 ${fontSize === "sm" ? "bg-amber-400 text-black font-bold" : "text-slate-300"}`}
+                className={`px-1.5 py-0.5 ${fontSize === "sm" ? "bg-white text-black font-bold" : "text-neutral-400"}`}
               >
                 A-
               </button>
               <button
                 onClick={() => setFontSize("base")}
-                className={`px-1.5 py-0.5 ${fontSize === "base" ? "bg-amber-400 text-black font-bold" : "text-slate-300"}`}
+                className={`px-1.5 py-0.5 ${fontSize === "base" ? "bg-white text-black font-bold" : "text-neutral-400"}`}
               >
                 A
               </button>
               <button
                 onClick={() => setFontSize("lg")}
-                className={`px-1.5 py-0.5 ${fontSize === "lg" ? "bg-amber-400 text-black font-bold" : "text-slate-300"}`}
+                className={`px-1.5 py-0.5 ${fontSize === "lg" ? "bg-white text-black font-bold" : "text-neutral-400"}`}
               >
                 A+
               </button>
             </div>
 
-            {/* Theme Selector */}
-            <div className="flex items-center gap-1 bg-slate-800 p-1 border border-slate-700">
+            <div className="flex items-center gap-1 bg-neutral-900 p-1 border border-neutral-700">
               <button
-                onClick={() => setTheme("vintage")}
-                className={`px-2 py-0.5 font-bold ${theme === "vintage" ? "bg-[#ffd500] text-black" : "text-slate-300"}`}
+                onClick={() => setTheme("dossier")}
+                className={`px-2 py-0.5 font-bold ${theme === "dossier" ? "bg-white text-black" : "text-neutral-400"}`}
               >
-                VINTAGE
+                DOSSIER
               </button>
               <button
                 onClick={() => setTheme("dark")}
-                className={`px-2 py-0.5 font-bold ${theme === "dark" ? "bg-[#00e5ff] text-black" : "text-slate-300"}`}
+                className={`px-2 py-0.5 font-bold ${theme === "dark" ? "bg-white text-black" : "text-neutral-400"}`}
               >
                 DARK
               </button>
             </div>
 
-            {/* Bookmark Trigger */}
             <button
               onClick={() => setBookmarked(!bookmarked)}
               className={`p-1.5 border ${
                 bookmarked
-                  ? "bg-[#ff2a5f] text-white border-black"
-                  : "bg-slate-800 text-slate-300 border-slate-700 hover:text-white"
+                  ? "bg-white text-black border-black"
+                  : "bg-neutral-900 text-neutral-400 border-neutral-700 hover:text-white"
               }`}
               title="Save Reader Bookmark"
             >
@@ -117,50 +117,45 @@ export default function ChapterReaderPage({ params }: { params: Promise<{ slug: 
         </div>
       </div>
 
-      {/* Main Chapter Content Container */}
-      <main className="flex-grow max-w-4xl mx-auto px-4 sm:px-6 py-10 w-full">
-        {/* Chapter Header Card */}
-        <header className="mb-10 text-center border-b-4 border-black pb-8">
-          <div className="inline-flex items-center gap-2 bg-black text-cyan-400 font-mono text-xs font-bold px-3 py-1 border-2 border-black shadow-[2px_2px_0_#00e5ff] mb-4">
-            <Radio className="w-4 h-4 text-red-500 animate-pulse" />
-            <span>SERIAL TRANSMISSION NO. 0{chapter.number}</span>
+      {/* Main Content */}
+      <main className="flex-grow max-w-4xl mx-auto px-4 sm:px-6 py-10 w-full z-10 relative">
+        <header className="mb-10 text-center border-b-2 border-black pb-8">
+          <div className="inline-flex items-center gap-2 bg-black text-white font-mono text-xs font-bold px-3 py-1 border border-neutral-700 mb-4">
+            <Shield className="w-4 h-4" />
+            <span>DISPATCH LOG FILE NO. 0{chapter.number}</span>
           </div>
 
-          <h1 className="text-3xl sm:text-5xl font-black uppercase italic tracking-tight mb-2">
+          <h1 className="text-2xl sm:text-4xl font-black uppercase tracking-wider italic mb-2">
             {chapter.title}
           </h1>
 
-          <p className="font-mono text-base sm:text-lg font-bold text-slate-600 dark:text-cyan-400 italic">
+          <p className="font-mono text-xs sm:text-sm font-bold text-neutral-600 italic">
             "{chapter.subtitle}"
           </p>
 
           <div className="mt-4 flex flex-wrap items-center justify-center gap-4 text-xs font-mono">
-            <span className="bg-amber-300 text-black px-2.5 py-1 border border-black font-bold">
-              RELEASED: {chapter.releaseDate}
+            <span className="bg-neutral-900 text-white px-2.5 py-1 border border-black font-bold">
+              DATE: {chapter.releaseDate}
             </span>
-            <span className="bg-slate-200 dark:bg-slate-800 text-slate-800 dark:text-slate-200 px-2.5 py-1 border border-black font-bold">
+            <span className="bg-neutral-200 text-neutral-900 px-2.5 py-1 border border-black font-bold">
               {chapter.wordCount} WORDS
             </span>
           </div>
         </header>
 
-        {/* Chapter Prose Text */}
+        {/* Prose Content */}
         <article
           className={`space-y-6 font-mono leading-relaxed transition-all ${
-            fontSize === "sm" ? "text-sm" : fontSize === "lg" ? "text-lg sm:text-xl" : "text-base sm:text-lg"
+            fontSize === "sm" ? "text-xs sm:text-sm" : fontSize === "lg" ? "text-base sm:text-lg" : "text-sm sm:text-base"
           }`}
         >
           {chapter.content.map((paragraph, index) => (
             <p
               key={index}
-              className={`p-4 border-l-4 ${
-                theme === "dark"
-                  ? "border-cyan-500 bg-slate-900/80"
-                  : "border-black bg-amber-50/50"
-              }`}
+              className="p-4 border-l-2 border-black bg-black/5"
             >
               {index === 0 && (
-                <span className="text-3xl font-black text-[#ff2a5f] mr-1 float-left leading-none uppercase">
+                <span className="text-2xl font-black text-black mr-1 float-left leading-none uppercase">
                   {paragraph.charAt(0)}
                 </span>
               )}
@@ -169,24 +164,24 @@ export default function ChapterReaderPage({ params }: { params: Promise<{ slug: 
           ))}
         </article>
 
-        {/* Cipher Hint Banner if attached */}
+        {/* Cipher Clue Banner */}
         {chapter.cipherHint && (
-          <div className="my-8 bg-amber-300 text-black border-4 border-black p-5 shadow-[6px_6px_0_#000] font-mono text-xs font-bold">
-            <span className="text-red-600 block uppercase font-black text-sm mb-1">
-              🔑 SECRET CIPHER CLUE DISCOVERED IN THIS TRANSMISSION:
+          <div className="my-8 bg-black text-white border-2 border-neutral-700 p-5 font-mono text-xs font-bold shadow-[4px_4px_0_#000]">
+            <span className="text-neutral-400 block uppercase font-black text-xs mb-1">
+              🔑 CIPHER KEY DISCOVERED IN THIS DISPATCH:
             </span>
             <p>{chapter.cipherHint}</p>
           </div>
         )}
 
-        {/* Chapter Bottom Navigation Bar */}
-        <div className="mt-12 pt-8 border-t-4 border-black flex flex-wrap items-center justify-between gap-4 font-mono">
+        {/* Navigation */}
+        <div className="mt-12 pt-8 border-t-2 border-black flex flex-wrap items-center justify-between gap-4 font-mono">
           {prevChapter ? (
             <Link
               href={`/chapters/${prevChapter.slug}`}
-              className="flex items-center gap-1.5 px-4 py-2 bg-white dark:bg-slate-800 text-black dark:text-white font-black text-xs uppercase border-2 border-black shadow-[3px_3px_0_#000] hover:bg-cyan-300 transition-all"
+              className="flex items-center gap-1.5 px-4 py-2 bg-black text-white font-black text-xs uppercase border border-black shadow-[2px_2px_0_#000] hover:bg-neutral-800 transition-all"
             >
-              <ChevronLeft className="w-4 h-4" /> PREV: CH {prevChapter.number}
+              <ChevronLeft className="w-4 h-4" /> PREV: FILE 0{prevChapter.number}
             </Link>
           ) : (
             <div />
@@ -195,14 +190,14 @@ export default function ChapterReaderPage({ params }: { params: Promise<{ slug: 
           {nextChapter ? (
             <Link
               href={`/chapters/${nextChapter.slug}`}
-              className="flex items-center gap-1.5 px-4 py-2 bg-[#00e5ff] text-black font-black text-xs uppercase border-2 border-black shadow-[3px_3px_0_#000] hover:bg-cyan-300 transition-all"
+              className="flex items-center gap-1.5 px-4 py-2 bg-white text-black font-black text-xs uppercase border border-black shadow-[2px_2px_0_#000] hover:bg-neutral-200 transition-all"
             >
-              <span>NEXT: CH {nextChapter.number}</span>
+              <span>NEXT: FILE 0{nextChapter.number}</span>
               <ChevronRight className="w-4 h-4" />
             </Link>
           ) : (
-            <div className="bg-slate-900 text-amber-400 p-3 border-2 border-black font-bold text-xs flex items-center gap-2">
-              <Lock className="w-4 h-4" /> CHAPTER 4 RELEASES THIS FRIDAY!
+            <div className="bg-black text-white p-3 border border-neutral-700 font-bold text-xs flex items-center gap-2">
+              <Lock className="w-4 h-4" /> RESTRICTED FILE 04 RELEASING FRIDAY
             </div>
           )}
         </div>

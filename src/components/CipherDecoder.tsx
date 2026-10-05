@@ -1,8 +1,8 @@
 "use client";
 
 import React, { useState } from "react";
-import { SECRET_CIPHERS, SecretCipher } from "@/data/novelData";
-import { Key, Unlock, Sparkles, Check, AlertCircle } from "lucide-react";
+import { SECRET_CIPHERS } from "@/data/novelData";
+import { Key, Unlock, Shield, AlertCircle } from "lucide-react";
 
 export function CipherDecoder() {
   const [inputCode, setInputCode] = useState("");
@@ -22,26 +22,26 @@ export function CipherDecoder() {
       }
       setInputCode("");
     } else {
-      setErrorMsg("INVALID CIPHER FREQUENCY. CHECK MAP HOTSPOTS AND CHAPTER TEXT!");
+      setErrorMsg("INVALID FREQUENCY KEY. CHECK SURVEILLANCE LOGS AND FILES!");
     }
   };
 
   return (
-    <div className="bg-slate-950 text-white border-4 border-black p-6 shadow-[8px_8px_0_#ff2a5f] relative overflow-hidden my-8">
-      <div className="absolute inset-0 bg-halftone-cyan pointer-events-none" />
+    <div className="bg-[#121212] text-white border-2 border-neutral-600 p-6 shadow-[6px_6px_0_#000] relative overflow-hidden my-8 font-mono">
+      <div className="absolute inset-0 bg-grain-dark pointer-events-none opacity-40" />
 
       <div className="relative z-10 max-w-2xl mx-auto space-y-4 text-center">
-        <div className="inline-flex items-center gap-2 bg-[#ffd500] text-black font-mono text-xs font-black px-3 py-1 border-2 border-black">
-          <Key className="w-4 h-4 text-red-600" />
-          <span>FREQUENCY CIPHER DECODER Terminal</span>
+        <div className="inline-flex items-center gap-2 bg-black text-neutral-300 font-bold text-xs px-3 py-1 border border-neutral-600">
+          <Key className="w-3.5 h-3.5" />
+          <span>CLASSIFIED CIPHER TERMINAL // DECRYPTION UNIT</span>
         </div>
 
-        <h3 className="text-2xl sm:text-3xl font-black uppercase italic tracking-tight text-white">
-          DECRYPT SUB-GRID SECRETS
+        <h3 className="text-xl sm:text-2xl font-black uppercase italic tracking-wider text-white">
+          DECRYPT INTERCEPTED TRANSMISSIONS
         </h3>
 
-        <p className="font-mono text-xs sm:text-sm text-cyan-300">
-          Enter frequency ciphers discovered across the serial chapters, comic panels, or world map (e.g., <code className="bg-black text-yellow-300 px-1.5 py-0.5 border border-slate-700">SUBGRID-VIP</code>, <code className="bg-black text-yellow-300 px-1.5 py-0.5 border border-slate-700">1964-CRYSTAL</code>, or <code className="bg-black text-yellow-300 px-1.5 py-0.5 border border-slate-700">STERLING-ECHO</code>).
+        <p className="text-xs text-neutral-300 leading-relaxed bg-black/60 p-3 border border-neutral-800">
+          Input cipher frequency keys intercepted from dossier files, radar map nodes, or surveillance frames (e.g. <code className="bg-neutral-900 text-white px-1.5 py-0.5 border border-neutral-700">SUBGRID-VIP</code>, <code className="bg-neutral-900 text-white px-1.5 py-0.5 border border-neutral-700">1964-CRYSTAL</code>, or <code className="bg-neutral-900 text-white px-1.5 py-0.5 border border-neutral-700">STERLING-ECHO</code>).
         </p>
 
         <form onSubmit={handleDecode} className="flex flex-col sm:flex-row gap-2 max-w-md mx-auto pt-2">
@@ -50,26 +50,26 @@ export function CipherDecoder() {
             value={inputCode}
             onChange={(e) => setInputCode(e.target.value)}
             placeholder="ENTER CIPHER (e.g. SUBGRID-VIP)"
-            className="flex-grow px-4 py-2.5 bg-slate-900 border-2 border-cyan-400 font-mono text-xs sm:text-sm text-white uppercase focus:outline-none focus:ring-2 focus:ring-yellow-400"
+            className="flex-grow px-4 py-2.5 bg-neutral-900 border border-neutral-600 text-xs sm:text-sm text-white uppercase focus:outline-none focus:border-white"
           />
           <button
             type="submit"
-            className="px-6 py-2.5 bg-[#00e5ff] text-black font-black uppercase text-xs sm:text-sm border-2 border-black shadow-[3px_3px_0_#000] hover:bg-cyan-300 transition-all cursor-pointer flex items-center justify-center gap-1.5"
+            className="px-6 py-2.5 bg-white text-black font-black uppercase text-xs sm:text-sm border border-black shadow-[2px_2px_0_#000] hover:bg-neutral-200 transition-all cursor-pointer flex items-center justify-center gap-1.5"
           >
-            <Unlock className="w-4 h-4" /> DECODE
+            <Unlock className="w-4 h-4" /> DECRYPT
           </button>
         </form>
 
         {errorMsg && (
-          <div className="bg-red-950 border-2 border-red-500 text-red-200 p-3 font-mono text-xs font-bold flex items-center justify-center gap-2">
-            <AlertCircle className="w-4 h-4 text-red-400" /> {errorMsg}
+          <div className="bg-neutral-900 border border-neutral-500 text-neutral-200 p-3 text-xs font-bold flex items-center justify-center gap-2">
+            <AlertCircle className="w-4 h-4 text-neutral-400" /> {errorMsg}
           </div>
         )}
 
-        {/* Unlocked Messages List */}
-        <div className="pt-6 border-t border-slate-800 text-left space-y-4">
-          <h4 className="font-mono text-xs font-bold text-amber-400 uppercase">
-            UNLOCKED CLASSIFIED TRANSMISSIONS ({unlockedCodes.length}/{SECRET_CIPHERS.length}):
+        {/* Decrypted Transmission List */}
+        <div className="pt-6 border-t border-neutral-800 text-left space-y-4">
+          <h4 className="text-xs font-bold text-neutral-400 uppercase">
+            DECRYPTED GOVERNMENT FILES ({unlockedCodes.length}/{SECRET_CIPHERS.length}):
           </h4>
 
           {SECRET_CIPHERS.map((cipher) => {
@@ -77,23 +77,23 @@ export function CipherDecoder() {
             return (
               <div
                 key={cipher.code}
-                className={`p-4 border-2 font-mono text-xs transition-all ${
+                className={`p-4 border font-mono text-xs transition-all ${
                   isUnlocked
-                    ? "bg-slate-900 border-emerald-400 text-slate-200"
-                    : "bg-slate-950 border-slate-800 text-slate-600 opacity-60"
+                    ? "bg-neutral-900 border-neutral-500 text-white"
+                    : "bg-black border-neutral-800 text-neutral-600 opacity-60"
                 }`}
               >
                 <div className="flex items-center justify-between mb-1">
-                  <span className={`font-bold uppercase ${isUnlocked ? "text-emerald-400" : "text-slate-500"}`}>
-                    {isUnlocked ? `✓ CIPHER: ${cipher.code}` : "🔒 LOCKED TRANSMISSION"}
+                  <span className={`font-bold uppercase ${isUnlocked ? "text-white" : "text-neutral-500"}`}>
+                    {isUnlocked ? `✓ CIPHER KEY: ${cipher.code}` : "🔒 CLASSIFIED ENCRYPTED LOG"}
                   </span>
-                  <span className="text-[10px] bg-black px-2 py-0.5 border border-slate-700">
+                  <span className="text-[10px] bg-neutral-950 px-2 py-0.5 border border-neutral-800">
                     {cipher.title}
                   </span>
                 </div>
 
-                <p className="mt-2 text-slate-300 leading-relaxed">
-                  {isUnlocked ? cipher.revealedMessage : "•••••••• •••••••• •••••••• [ENTER VALID FREQUENCY CODE TO UNLOCK]"}
+                <p className="mt-2 text-neutral-300 leading-relaxed font-mono">
+                  {isUnlocked ? cipher.revealedMessage : "•••••••• •••••••• •••••••• [CLASSIFIED CONTENT REDACTED - INPUT CIPHER TO UNLOCK]"}
                 </p>
               </div>
             );
